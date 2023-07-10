@@ -3,7 +3,7 @@
   "description": "Reduces large strings of text into distinct search terms.",
   "type": "module",
   "engines": {
-    "node": "^14.13.1 || >=16.0.0"
+    "node": ">=16.0.0"
   },
   "version": "0.1.0",
   "main": "index.js",
