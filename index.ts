@@ -69,7 +69,7 @@ export function textToSearchTerms(
   let searchTerms = searchTermsString.replaceAll(/\s+/g, ' ').split(' ')
 
   if (options.sortAlphabetically) {
-    searchTerms.sort()
+    searchTerms.sort((a, b) => a.localeCompare(b))
   }
 
   if (options.removeDuplicateWords || options.removeDuplicatePartialWords) {

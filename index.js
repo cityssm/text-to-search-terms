@@ -34,7 +34,7 @@ export function textToSearchTerms(textString, userOptions = OPTIONS_DEFAULT) {
     }
     let searchTerms = searchTermsString.replaceAll(/\s+/g, ' ').split(' ');
     if (options.sortAlphabetically) {
-        searchTerms.sort();
+        searchTerms.sort((a, b) => a.localeCompare(b));
     }
     if (options.removeDuplicateWords || options.removeDuplicatePartialWords) {
         const distinctSet = new Set(searchTerms);
