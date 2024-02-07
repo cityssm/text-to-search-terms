@@ -2,6 +2,8 @@ import { remove as removeDiacritics } from 'diacritics'
 
 const lettersAndNumbersRegex = /[\da-z]/i
 
+const punctuationRegex = /[!"(),.:;?[\]“”-]/g
+
 export interface TextToSearchTermsOptions {
   removeCase: boolean
   removePunctuation: boolean
@@ -59,7 +61,7 @@ export function textToSearchTerms(
   }
 
   if (options.removePunctuation) {
-    searchTermsString = searchTermsString.replaceAll(/[!(),.:;?[\]-]/g, ' ')
+    searchTermsString = searchTermsString.replaceAll(punctuationRegex, ' ')
   }
 
   if (options.removeDiacritics) {
