@@ -1,6 +1,6 @@
 import { remove as removeDiacritics } from 'diacritics';
 const lettersAndNumbersRegex = /[\da-z]/i;
-const punctuationRegex = /[!"(),.:;?[\]“”-]/g;
+const punctuationRegex = /[!"(),.:;?[\]{}“”-]/g;
 const OPTIONS_DEFAULT = {
     removeCase: true,
     removePunctuation: true,

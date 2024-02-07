@@ -2,7 +2,7 @@ import { remove as removeDiacritics } from 'diacritics'
 
 const lettersAndNumbersRegex = /[\da-z]/i
 
-const punctuationRegex = /[!"(),.:;?[\]“”-]/g
+const punctuationRegex = /[!"(),.:;?[\]{}“”-]/g
 
 export interface TextToSearchTermsOptions {
   removeCase: boolean
