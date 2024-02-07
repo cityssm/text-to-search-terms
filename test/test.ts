@@ -8,7 +8,7 @@ const tests = [
   ['éléphante', 'elephante'], // diacritics
   ['test. !test test,test', 'test'], // punctuation
   ['abc 123 ab12* ****', '123 ab12* abc'], // remove words without letters or numbers
-  ['Hop to the shop! There\'s a sale on a mop!', 'mop on sale shop there\'s to']
+  ["Hop to the shop! There's a sale on a mop!", "mop on sale shop there's to"]
 ]
 
 describe('textToSearchTerms', () => {
