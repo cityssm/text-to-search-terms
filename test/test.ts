@@ -7,7 +7,7 @@ const tests = [
   ['Hop Hopping Shop Shopping', 'shopping'], // partial words
   ['éléphante', 'elephante'], // diacritics
   ['test. !test test,test', 'test'], // punctuation
-  ['Hop to the shop! There\'s a sale on a mop!', 'mop on sale shop there\'s to']
+  ["Hop to the shop! There's a sale on a mop!", "mop on sale shop there's to"]
 ]
 
 describe('textToSearchTerms', () => {
