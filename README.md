@@ -21,11 +21,12 @@ console.log(
 
 ## Options
 
-| Option                            | Default |
-| --------------------------------- | ------- |
-| **`removeCase`**                  | `true`  |
-| **`removePunctuation`**           | `true`  |
-| **`removeDiacritics`**            | `false` |
-| **`sortAlphabetically`**          | `false` |
-| **`removeDuplicateWords`**        | `true`  |
-| **`removeDuplicatePartialWords`** | `false` |
+| Option                                   | Default |
+| ---------------------------------------- | ------- |
+| **`removeCase`**                         | `true`  |
+| **`removePunctuation`**                  | `true`  |
+| **`removeDiacritics`**                   | `false` |
+| **`removeWordsWithoutLettersOrNumbers`** | `false` |
+| **`sortAlphabetically`**                 | `false` |
+| **`removeDuplicateWords`**               | `true`  |
+| **`removeDuplicatePartialWords`**        | `false` |

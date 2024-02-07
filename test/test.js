@@ -1,10 +1,11 @@
-import * as assert from 'node:assert';
-import { textToSearchTermsString, OPTIONS_ALL } from '../index.js';
+import assert from 'node:assert';
+import { OPTIONS_ALL, textToSearchTermsString } from '../index.js';
 const tests = [
     ['banana apple', 'apple banana'],
     ['Hop Hopping Shop Shopping', 'shopping'],
     ['éléphante', 'elephante'],
     ['test. !test test,test', 'test'],
+    ['abc 123 ab12* ****', '123 ab12* abc'],
     ['Hop to the shop! There\'s a sale on a mop!', 'mop on sale shop there\'s to']
 ];
 describe('textToSearchTerms', () => {

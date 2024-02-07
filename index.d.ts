@@ -2,6 +2,7 @@ export interface TextToSearchTermsOptions {
     removeCase: boolean;
     removePunctuation: boolean;
     removeDiacritics: boolean;
+    removeWordsWithoutLettersOrNumbers: boolean;
     sortAlphabetically: boolean;
     removeDuplicateWords: boolean;
     removeDuplicatePartialWords: boolean;

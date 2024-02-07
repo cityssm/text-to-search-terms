@@ -1,8 +1,10 @@
 import { remove as removeDiacritics } from 'diacritics';
+const lettersAndNumbersRegex = /[\da-z]/i;
 const OPTIONS_DEFAULT = {
     removeCase: true,
     removePunctuation: true,
     removeDiacritics: false,
+    removeWordsWithoutLettersOrNumbers: false,
     sortAlphabetically: false,
     removeDuplicateWords: true,
     removeDuplicatePartialWords: false
@@ -12,6 +14,7 @@ export const OPTIONS_ALL = {
     removeCase: true,
     removePunctuation: true,
     removeDiacritics: true,
+    removeWordsWithoutLettersOrNumbers: true,
     sortAlphabetically: true,
     removeDuplicateWords: true,
     removeDuplicatePartialWords: true
@@ -37,12 +40,19 @@ export function textToSearchTerms(textString, userOptions = OPTIONS_DEFAULT) {
         const distinctSet = new Set(searchTerms);
         searchTerms = [...distinctSet];
     }
-    if (options.removeDuplicatePartialWords) {
+    if (options.removeDuplicatePartialWords ||
+        options.removeWordsWithoutLettersOrNumbers) {
         searchTerms = searchTerms.filter((currentWord, currentIndex, currentList) => {
-            for (const [possibleIndex, possibleWord] of currentList.entries()) {
-                if (possibleWord.includes(currentWord) &&
-                    possibleIndex !== currentIndex) {
-                    return false;
+            if (options.removeWordsWithoutLettersOrNumbers &&
+                !lettersAndNumbersRegex.test(currentWord)) {
+                return false;
+            }
+            if (options.removeDuplicatePartialWords) {
+                for (const [possibleIndex, possibleWord] of currentList.entries()) {
+                    if (possibleWord.includes(currentWord) &&
+                        possibleIndex !== currentIndex) {
+                        return false;
+                    }
                 }
             }
             return true;

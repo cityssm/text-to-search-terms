@@ -1,9 +1,12 @@
 import { remove as removeDiacritics } from 'diacritics'
 
+const lettersAndNumbersRegex = /[\da-z]/i
+
 export interface TextToSearchTermsOptions {
   removeCase: boolean
   removePunctuation: boolean
   removeDiacritics: boolean
+  removeWordsWithoutLettersOrNumbers: boolean
   sortAlphabetically: boolean
   removeDuplicateWords: boolean
   removeDuplicatePartialWords: boolean
@@ -13,6 +16,7 @@ const OPTIONS_DEFAULT: TextToSearchTermsOptions = {
   removeCase: true,
   removePunctuation: true,
   removeDiacritics: false,
+  removeWordsWithoutLettersOrNumbers: false,
   sortAlphabetically: false,
   removeDuplicateWords: true,
   removeDuplicatePartialWords: false
@@ -24,6 +28,7 @@ export const OPTIONS_ALL: TextToSearchTermsOptions = {
   removeCase: true,
   removePunctuation: true,
   removeDiacritics: true,
+  removeWordsWithoutLettersOrNumbers: true,
   sortAlphabetically: true,
   removeDuplicateWords: true,
   removeDuplicatePartialWords: true
@@ -31,6 +36,12 @@ export const OPTIONS_ALL: TextToSearchTermsOptions = {
 
 Object.freeze(OPTIONS_ALL)
 
+/**
+ * Converts a text string into an array of search terms.
+ * @param {string} textString - The text string
+ * @param {TextToSearchTermsOptions} userOptions - Options on how to clean up the text string
+ * @returns {string[]} An array of search terms
+ */
 export function textToSearchTerms(
   textString: string,
   userOptions: Partial<TextToSearchTermsOptions> = OPTIONS_DEFAULT
@@ -66,15 +77,27 @@ export function textToSearchTerms(
     searchTerms = [...distinctSet]
   }
 
-  if (options.removeDuplicatePartialWords) {
+  if (
+    options.removeDuplicatePartialWords ||
+    options.removeWordsWithoutLettersOrNumbers
+  ) {
     searchTerms = searchTerms.filter(
       (currentWord, currentIndex, currentList) => {
-        for (const [possibleIndex, possibleWord] of currentList.entries()) {
-          if (
-            possibleWord.includes(currentWord) &&
-            possibleIndex !== currentIndex
-          ) {
-            return false
+        if (
+          options.removeWordsWithoutLettersOrNumbers &&
+          !lettersAndNumbersRegex.test(currentWord)
+        ) {
+          return false
+        }
+
+        if (options.removeDuplicatePartialWords) {
+          for (const [possibleIndex, possibleWord] of currentList.entries()) {
+            if (
+              possibleWord.includes(currentWord) &&
+              possibleIndex !== currentIndex
+            ) {
+              return false
+            }
           }
         }
 
@@ -86,6 +109,12 @@ export function textToSearchTerms(
   return searchTerms
 }
 
+/**
+ * Converts a text string into a string of search terms.
+ * @param {string} textString - The text string
+ * @param {TextToSearchTermsOptions} userOptions - Options on how to clean up the text string
+ * @returns {string} An string of search terms
+ */
 export function textToSearchTermsString(
   textString: string,
   userOptions: Partial<TextToSearchTermsOptions> = OPTIONS_DEFAULT
