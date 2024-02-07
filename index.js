@@ -1,5 +1,6 @@
 import { remove as removeDiacritics } from 'diacritics';
 const lettersAndNumbersRegex = /[\da-z]/i;
+const punctuationRegex = /[!"(),.:;?[\]“”-]/g;
 const OPTIONS_DEFAULT = {
     removeCase: true,
     removePunctuation: true,
@@ -27,7 +28,7 @@ export function textToSearchTerms(textString, userOptions = OPTIONS_DEFAULT) {
         searchTermsString = searchTermsString.toLowerCase();
     }
     if (options.removePunctuation) {
-        searchTermsString = searchTermsString.replaceAll(/[!(),.:;?[\]-]/g, ' ');
+        searchTermsString = searchTermsString.replaceAll(punctuationRegex, ' ');
     }
     if (options.removeDiacritics) {
         searchTermsString = removeDiacritics(searchTermsString);

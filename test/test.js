@@ -4,7 +4,7 @@ const tests = [
     ['banana apple', 'apple banana'],
     ['Hop Hopping Shop Shopping', 'shopping'],
     ['éléphante', 'elephante'],
-    ['test. !test test,test', 'test'],
+    ['test. !test test,test “test”', 'test'],
     ['abc 123 ab12* ****', '123 ab12* abc'],
     ['Hop to the shop! There\'s a sale on a mop!', 'mop on sale shop there\'s to']
 ];
