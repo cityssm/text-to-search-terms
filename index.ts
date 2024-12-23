@@ -40,9 +40,9 @@ Object.freeze(OPTIONS_ALL)
 
 /**
  * Converts a text string into an array of search terms.
- * @param {string} textString - The text string
- * @param {TextToSearchTermsOptions} userOptions - Options on how to clean up the text string
- * @returns {string[]} An array of search terms
+ * @param textString - The text string
+ * @param userOptions - Options on how to clean up the text string
+ * @returns An array of search terms
  */
 export function textToSearchTerms(
   textString: string,
@@ -113,9 +113,9 @@ export function textToSearchTerms(
 
 /**
  * Converts a text string into a string of search terms.
- * @param {string} textString - The text string
- * @param {TextToSearchTermsOptions} userOptions - Options on how to clean up the text string
- * @returns {string} An string of search terms
+ * @param textString - The text string
+ * @param userOptions - Options on how to clean up the text string
+ * @returns An string of search terms
  */
 export function textToSearchTermsString(
   textString: string,

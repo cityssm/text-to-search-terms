@@ -21,6 +21,12 @@ export const OPTIONS_ALL = {
     removeDuplicatePartialWords: true
 };
 Object.freeze(OPTIONS_ALL);
+/**
+ * Converts a text string into an array of search terms.
+ * @param textString - The text string
+ * @param userOptions - Options on how to clean up the text string
+ * @returns An array of search terms
+ */
 export function textToSearchTerms(textString, userOptions = OPTIONS_DEFAULT) {
     const options = Object.assign({}, OPTIONS_DEFAULT, userOptions);
     let searchTermsString = textString;
@@ -61,6 +67,12 @@ export function textToSearchTerms(textString, userOptions = OPTIONS_DEFAULT) {
     }
     return searchTerms;
 }
+/**
+ * Converts a text string into a string of search terms.
+ * @param textString - The text string
+ * @param userOptions - Options on how to clean up the text string
+ * @returns An string of search terms
+ */
 export function textToSearchTermsString(textString, userOptions = OPTIONS_DEFAULT) {
     return textToSearchTerms(textString, userOptions).join(' ');
 }
